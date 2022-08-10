@@ -150,14 +150,14 @@ class URLSessionUploader: NSObject {
         wifiConfiguration.httpMaximumConnectionsPerHost = maxConcurrentTasks.intValue
         wifiConfiguration.timeoutIntervalForRequest = URLSessionUploader.determineTimeout()
         wifiConfiguration.allowsCellularAccess = false
-        wifiConfiguration.isDiscretionary = true
+        wifiConfiguration.shouldUseExtendedBackgroundIdleMode = true
         self.wifiSession = URLSession(configuration: wifiConfiguration, delegate: self, delegateQueue: queue)
 
         // configure regular session
         let sessionConfiguration = URLSessionConfiguration.background(withIdentifier: Keys.backgroundSessionIdentifier)
         sessionConfiguration.httpMaximumConnectionsPerHost = maxConcurrentTasks.intValue
         sessionConfiguration.timeoutIntervalForRequest = URLSessionUploader.determineTimeout()
-        sessionConfiguration.isDiscretionary = true
+        sessionConfiguration.shouldUseExtendedBackgroundIdleMode = true
         self.session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: queue)
     }
 
