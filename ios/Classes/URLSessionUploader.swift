@@ -151,6 +151,8 @@ class URLSessionUploader: NSObject {
         wifiConfiguration.timeoutIntervalForRequest = URLSessionUploader.determineTimeout()
         wifiConfiguration.allowsCellularAccess = false
         wifiConfiguration.shouldUseExtendedBackgroundIdleMode = true
+        wifiConfiguration.sessionSendsLaunchEvents = true
+
         self.wifiSession = URLSession(configuration: wifiConfiguration, delegate: self, delegateQueue: queue)
 
         // configure regular session
@@ -158,6 +160,8 @@ class URLSessionUploader: NSObject {
         sessionConfiguration.httpMaximumConnectionsPerHost = maxConcurrentTasks.intValue
         sessionConfiguration.timeoutIntervalForRequest = URLSessionUploader.determineTimeout()
         sessionConfiguration.shouldUseExtendedBackgroundIdleMode = true
+        sessionConfiguration.sessionSendsLaunchEvents = true
+        
         self.session = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: queue)
     }
 
